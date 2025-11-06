@@ -3,12 +3,12 @@ extends CharacterBody2D
 const GRAVITY = 980.0
 const JUMP_VELOCITY = -500.0
 
-var is_alive = true
+var is_alive := true
 
-func _ready():
+func _ready() -> void:
 	pass
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return
 
@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func die():
+func die() -> void:
 	is_alive = false
 	# Simple death animation - could be enhanced
 	velocity = Vector2.ZERO
