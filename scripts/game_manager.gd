@@ -9,19 +9,19 @@ extends Node2D
 @onready var final_score_label = $UI/GameOverPanel/VBoxContainer/FinalScoreLabel
 @onready var restart_button = $UI/GameOverPanel/VBoxContainer/RestartButton
 
-var score = 0
-var score_timer = 0.0
-var game_running = true
-var scroll_speed = 200.0
+var score := 0
+var score_timer := 0.0
+var game_running := true
+var scroll_speed := 200.0
 
-func _ready():
+func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	game_over_panel.hide()
 
 	# Initialize parallax background scroll speed
 	parallax_bg.set_scroll_speed(scroll_speed)
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if not game_running:
 		return
 
@@ -39,7 +39,7 @@ func _process(delta):
 		obstacle_spawner.set_scroll_speed(scroll_speed)
 		parallax_bg.set_scroll_speed(scroll_speed)
 
-func game_over():
+func game_over() -> void:
 	if not game_running:
 		return
 
@@ -52,5 +52,5 @@ func game_over():
 	final_score_label.text = "Score: " + str(score)
 	game_over_panel.show()
 
-func _on_restart_button_pressed():
+func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()

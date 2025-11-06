@@ -7,14 +7,14 @@ extends Node2D
 @export var spawn_x_position = 1400.0
 @export var ground_y_position = 600.0
 
-var spawn_timer = 0.0
-var obstacles = []
-var game_running = true
+var spawn_timer := 0.0
+var obstacles: Array = []
+var game_running := true
 
-func _ready():
+func _ready() -> void:
 	pass
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if not game_running:
 		return
 
@@ -36,8 +36,8 @@ func _process(delta):
 			obstacle.queue_free()
 			obstacles.erase(obstacle)
 
-func spawn_obstacle():
-	var obstacle = obstacle_scene.instantiate()
+func spawn_obstacle() -> void:
+	var obstacle := obstacle_scene.instantiate()
 	obstacle.position = Vector2(spawn_x_position, ground_y_position - 40)
 	add_child(obstacle)
 	obstacles.append(obstacle)
@@ -45,13 +45,13 @@ func spawn_obstacle():
 	# Connect to player collision
 	obstacle.body_entered.connect(_on_obstacle_hit)
 
-func _on_obstacle_hit(body):
+func _on_obstacle_hit(body: Node2D) -> void:
 	if body.name == "Player":
 		# Trigger game over
 		get_parent().game_over()
 
-func set_scroll_speed(speed):
+func set_scroll_speed(speed: float) -> void:
 	scroll_speed = speed
 
-func stop():
+func stop() -> void:
 	game_running = false
