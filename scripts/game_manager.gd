@@ -18,6 +18,9 @@ func _ready():
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	game_over_panel.hide()
 
+	# Initialize parallax background scroll speed
+	parallax_bg.set_scroll_speed(scroll_speed)
+
 func _process(delta):
 	if not game_running:
 		return
