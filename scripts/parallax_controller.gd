@@ -8,7 +8,7 @@ func _process(delta):
 	if not game_running:
 		return
 
-	scroll_offset.x -= scroll_speed * delta
+	scroll_base_offset.x -= scroll_speed * delta
 
 func set_scroll_speed(speed):
 	scroll_speed = speed * 0.5  # Parallax moves slower than foreground
